@@ -2,6 +2,8 @@
 
 Reusable Codex skill for turning user-provided RfP/RFP documents into proposal-slide workspaces, control documents, and one-slide-per-task planning structures.
 
+Korean documentation: [README.ko.md](README.ko.md)
+
 ## What This Repo Contains
 
 - `proposal-slideformat-generator/`
@@ -21,7 +23,7 @@ Reusable Codex skill for turning user-provided RfP/RFP documents into proposal-s
 Clone this repository and copy `proposal-slideformat-generator/` into your Codex skills directory.
 
 ```powershell
-git clone https://github.com/<your-account>/Proposal-SlideFormat-Generator.git
+git clone https://github.com/geniusjo1984/Proposal-SlideFormat-Generator.git
 Copy-Item -Recurse -Force .\Proposal-SlideFormat-Generator\proposal-slideformat-generator $HOME\.codex\skills\
 ```
 
@@ -51,3 +53,4 @@ Create `개요.md` only when needed:
 
 - Do not commit client RfPs or internal reference decks unless you have the right to publish them.
 - Keep this repository limited to reusable skill logic and templates.
+- The repository intentionally excludes screenshots and client-specific sample materials.
