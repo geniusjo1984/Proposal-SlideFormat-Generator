@@ -19,6 +19,8 @@ Korean documentation: [README.ko.md](README.ko.md)
 - Rebuild `DESIGN.md` from `02.Reference_Templete` when template references exist
 - Ask for user confirmation before using the default design baseline when `02.Reference_Templete` is empty
 - Generate `AGENT.md` after `DESIGN.md` and `TASK.md` are confirmed
+- Prefer Stitch MCP or a Stitch skill for slide generation
+- Recommend Stitch installation first when Stitch is unavailable
 - Treat `TASK.md` as a project-specific output derived from the user's RfP
 - Support consulting-style and Korean public-sector proposal slide planning
 - Enforce A4 landscape as the fixed default slide ratio
@@ -46,6 +48,8 @@ This creates folders only. Then place the source RfP in `01.Input_RfP`.
 Then place slide-format references in `02.Reference_Templete` and supporting references in `03` and `04`.
 
 After that, ask Codex to generate baseline `DESIGN.md` and `TASK.md`.
+
+When slide generation starts, Codex should prefer Stitch. If Stitch is not available, Codex should recommend installing it before falling back to the standard workflow.
 
 ## Repo Notes
 

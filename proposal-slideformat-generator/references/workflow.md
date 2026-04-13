@@ -22,8 +22,17 @@ Use this workflow to set up and run a repeatable RfP-based proposal-slide projec
 6. If `02.Reference_Templete` has usable references, reconstruct `DESIGN.md` from those references while preserving the fixed A4-landscape baseline.
 7. If `02.Reference_Templete` is empty, ask the user to confirm use of the default baseline from `references/design-template.md`.
 8. Stop for user review and confirmation of `DESIGN.md` and `TASK.md`.
-9. After confirmation, create `AGENT.md` and draft slides in `05.Output_Slide`.
-10. Revise or regenerate slides based on user feedback.
+9. After confirmation, check whether Stitch MCP or a Stitch skill is available for slide generation.
+10. If Stitch is not available, recommend Stitch installation first.
+11. Create `AGENT.md` and draft slides in `05.Output_Slide`.
+12. Revise or regenerate slides based on user feedback.
+
+## Stitch Preference
+
+- Prefer Stitch MCP when the environment supports it.
+- Otherwise prefer a Stitch skill workflow.
+- If neither is available, recommend installing Stitch before continuing.
+- If the user chooses not to install Stitch, continue with the standard workflow using the confirmed workspace documents.
 
 ## Document Roles
 

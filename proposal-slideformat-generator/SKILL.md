@@ -7,6 +7,8 @@ description: Create consulting-style proposal slide workspaces and slide plans f
 
 Use this skill to turn an RfP into a reusable slide-production workspace, a confirmed design/task baseline, and a proposal-ready slide set.
 
+Prefer Stitch-based slide generation when it is available in the user's environment.
+
 ## Quick Start
 
 1. Initialize the workspace folders when the project structure does not exist.
@@ -15,6 +17,15 @@ Use this skill to turn an RfP into a reusable slide-production workspace, a conf
 4. Wait for the user to review and confirm `DESIGN.md` and `TASK.md`.
 5. After confirmation, generate `AGENT.md` if needed and start slide creation.
 6. Revise or regenerate slides based on user review.
+
+## Preferred Execution Path
+
+Use this execution priority for slide creation:
+
+1. If Stitch MCP is available, use it as the preferred slide-generation path.
+2. Otherwise, if a Stitch skill is available, use that workflow.
+3. If Stitch is not available, first recommend that the user install Stitch.
+4. If Stitch is still unavailable or the user declines, continue with the standard workflow using confirmed `DESIGN.md` and `TASK.md`.
 
 ## Initialize The Workspace
 
@@ -115,11 +126,13 @@ Treat the design baseline from `references/design-template.md` as mandatory by d
 Default to this sequence unless the user asks for a different workflow:
 
 1. Generate or update `AGENT.md` from the confirmed `DESIGN.md` and `TASK.md`.
-2. Create the overall proposal logic and section map.
-3. Draft one main slide per task.
-4. Carry all required sub-bullets from the RfP into the slide body.
-5. Refine wording into concise, proposal-style statements.
-6. Check layout density and export safety for PowerPoint or PDF.
+2. Check whether Stitch MCP or a Stitch skill is available.
+3. If Stitch is unavailable, recommend installation before proceeding.
+4. Create the overall proposal logic and section map.
+5. Draft one main slide per task.
+6. Carry all required sub-bullets from the RfP into the slide body.
+7. Refine wording into concise, proposal-style statements.
+8. Check layout density and export safety for PowerPoint or PDF.
 
 ## Quality Control
 

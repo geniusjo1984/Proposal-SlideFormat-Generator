@@ -42,6 +42,9 @@ Always follow this order before generating or revising slides:
 - Use the confirmed `DESIGN.md` to control visual language and formatting
 - Use the confirmed `TASK.md` to control content structure and slide mapping
 - Enforce A4 landscape composition as a fixed default
+- Prefer Stitch MCP for slide generation when available
+- Otherwise prefer a Stitch skill workflow
+- If Stitch is unavailable, recommend installation before continuing
 - Default to one main slide per task unless the user instructs otherwise
 
 ## Slide Planning Rules
@@ -52,6 +55,7 @@ Always follow this order before generating or revising slides:
 - Choose the slide form according to the task type
 - Avoid paragraph-heavy layouts
 - Keep the slide ratio fixed at A4 landscape unless the user explicitly overrides it
+- If Stitch is unavailable and the user declines installation, continue with the standard workflow instead of blocking the entire project
 
 ## Tone And Writing Style
 
