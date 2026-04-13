@@ -11,6 +11,14 @@ Define the working instructions for agents creating proposal slides in this work
 
 ## Read Order
 
+Before reading anything else, confirm that `01.Input_RfP/` contains the actual source RfP.
+
+If the folder is empty:
+
+1. Stop.
+2. Ask the user to place the RfP in `01.Input_RfP`.
+3. Do not create `TASK.md` or draft slides yet.
+
 Always follow this order before generating or revising slides:
 
 1. Read `DESIGN.md`
@@ -31,6 +39,7 @@ Always follow this order before generating or revising slides:
 - Build a proposal-style slide deck covering the RfP task structure
 - Use `DESIGN.md` to control visual language and formatting
 - Use `TASK.md` to control content structure and slide mapping
+- Enforce A4 landscape composition as a fixed default
 - Default to one main slide per task unless the user instructs otherwise
 
 ## Slide Planning Rules
@@ -40,6 +49,7 @@ Always follow this order before generating or revising slides:
 - Keep the body structured and presentation-ready
 - Choose the slide form according to the task type
 - Avoid paragraph-heavy layouts
+- Keep the slide ratio fixed at A4 landscape unless the user explicitly overrides it
 
 ## Tone And Writing Style
 

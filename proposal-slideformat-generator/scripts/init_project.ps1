@@ -6,6 +6,8 @@ param(
 
     [string]$ProjectName,
 
+    [switch]$CreateControlDocs,
+
     [switch]$Force
 )
 
@@ -56,6 +58,28 @@ foreach ($folder in $folders) {
         New-Item -ItemType Directory -Path $target | Out-Null
         Write-Host "[create] $target"
     }
+}
+
+$rfpPlaceholderPath = Join-Path $resolvedProjectRoot "01.Input_RfP\PUT_RFP_HERE.txt"
+if ((-not (Test-Path -LiteralPath $rfpPlaceholderPath)) -or $Force) {
+    @(
+        "Place the source RfP or RFP document in this folder before creating TASK.md or drafting slides.",
+        "The skill should stop and ask for the RfP if this folder has no source file."
+    ) | Set-Content -LiteralPath $rfpPlaceholderPath -Encoding UTF8
+    Write-Host "[write]  $rfpPlaceholderPath"
+}
+
+if (-not $CreateControlDocs) {
+    Write-Host "[done]   Folder scaffold created."
+    Write-Host "[next]   Put the source RfP into 01.Input_RfP, then rerun with -CreateControlDocs."
+    return
+}
+
+$rfpFiles = Get-ChildItem -LiteralPath (Join-Path $resolvedProjectRoot "01.Input_RfP") -File |
+    Where-Object { $_.Name -ne "PUT_RFP_HERE.txt" }
+
+if ($rfpFiles.Count -eq 0) {
+    throw "No source RfP found in 01.Input_RfP. Put the RfP file in that folder before using -CreateControlDocs."
 }
 
 foreach ($file in $files) {

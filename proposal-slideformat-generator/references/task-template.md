@@ -4,7 +4,7 @@ Use this template to derive a project-specific `TASK.md` from the user's RfP.
 
 ## Required Principles
 
-- Build `TASK.md` after reading the RfP.
+- Build `TASK.md` only after confirming that the actual RfP is present in `01.Input_RfP`.
 - Preserve the source section hierarchy unless the user requests a different structure.
 - Preserve task-level bullets that the slide set must reflect.
 - Keep all titles and lead messages traceable to the source.

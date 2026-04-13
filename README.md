@@ -14,9 +14,11 @@ Korean documentation: [README.ko.md](README.ko.md)
 ## What The Skill Does
 
 - Create a standard proposal project folder structure
-- Generate baseline `DESIGN.md`, `TASK.md`, and `AGENT.md`
+- Stop after scaffolding if the source RfP has not been provided yet
+- Generate `DESIGN.md`, `TASK.md`, and `AGENT.md` only after the RfP exists
 - Treat `TASK.md` as a project-specific output derived from the user's RfP
 - Support consulting-style and Korean public-sector proposal slide planning
+- Enforce A4 landscape as the fixed default slide ratio
 
 ## Install
 
@@ -37,10 +39,12 @@ Initialize a new project root folder and standard subfolders:
 .\proposal-slideformat-generator\scripts\init_project.ps1 -ProjectName client-a-rfp -BasePath .\projects
 ```
 
-Or scaffold directly into a known target path:
+This creates folders only. Then place the source RfP in `01.Input_RfP`.
+
+After the RfP is present, create the control documents:
 
 ```powershell
-.\proposal-slideformat-generator\scripts\init_project.ps1 -ProjectRoot .\projects\client-a-rfp
+.\proposal-slideformat-generator\scripts\init_project.ps1 -ProjectRoot .\projects\client-a-rfp -CreateControlDocs
 ```
 
 ## Repo Notes

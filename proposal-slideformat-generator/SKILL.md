@@ -9,15 +9,15 @@ Use this skill to turn an RfP into a reusable slide-production workspace and a p
 
 ## Quick Start
 
-1. Initialize the workspace when the project folders or control documents do not exist.
-2. Read the user-provided RfP before writing any project-specific claims.
-3. Create or update `DESIGN.md`, `TASK.md`, and `AGENT.md` from the templates in `references/`.
+1. Initialize the workspace folders when the project structure does not exist.
+2. Stop and ask the user to place the source RfP in `01.Input_RfP` if that folder has no source file.
+3. Create or update `DESIGN.md`, `TASK.md`, and `AGENT.md` only after the RfP is present.
 4. Plan slides from `TASK.md`, usually with one main slide per task unless the user requests another mapping.
 5. Verify that every claim is traceable to the RfP or an explicit user instruction.
 
 ## Initialize The Workspace
 
-Run the initializer when the user wants the folder structure and baseline control files created automatically.
+Run the initializer when the user wants the project folder structure created automatically.
 
 ```powershell
 ./scripts/init_project.ps1 -ProjectName <project-folder-name> -BasePath <parent-folder>
@@ -29,7 +29,9 @@ Or point directly at the full project path:
 ./scripts/init_project.ps1 -ProjectRoot <target-folder>
 ```
 
-The script creates these folders by default:
+By default the script creates folders only and writes an input reminder file in `01.Input_RfP`.
+
+The script creates these folders:
 
 - `01.Input_RfP`
 - `02.Reference_Templete`
@@ -37,7 +39,7 @@ The script creates these folders by default:
 - `04.Reference_Contents_Assistance`
 - `05.Output_Slide`
 
-The script also creates these files when missing:
+After the user places the source RfP in `01.Input_RfP`, rerun the script with `-CreateControlDocs` to write:
 
 - `DESIGN.md`
 - `TASK.md`
@@ -45,12 +47,22 @@ The script also creates these files when missing:
 
 Use `-Force` to overwrite existing files that were previously scaffolded or intentionally replaced.
 
+## Input Gate
+
+Do not create `TASK.md`, do not draft slides, and do not infer project-specific content until an actual RfP file exists in `01.Input_RfP`.
+
+If the workspace has been scaffolded but the input folder is empty:
+
+1. Stop after folder setup.
+2. Tell the user to place the RfP in `01.Input_RfP`.
+3. Resume only after the source file is present.
+
 ## Build The Control Documents
 
 Use the reference files selectively instead of loading everything by default.
 
 - Use `references/workflow.md` to understand the end-to-end operating model and folder responsibilities.
-- Use `references/design-template.md` when creating or revising `DESIGN.md`.
+- Use `references/design-template.md` as the fixed design authority. Keep A4 landscape and the baseline visual system unless the user explicitly overrides them.
 - Use `references/task-template.md` when deriving `TASK.md` from a user-provided RfP.
 - Use `references/agent-template.md` when creating the execution and quality-control rules in `AGENT.md`.
 
@@ -68,6 +80,17 @@ When building `TASK.md`:
 6. Keep terminology consistent with the RfP and the user's proposal style.
 
 If the RfP is ambiguous, keep the structure generic rather than inventing unsupported detail.
+
+## Fixed Design Baseline
+
+Treat the design baseline from `references/design-template.md` as mandatory by default:
+
+- A4 landscape is mandatory
+- White background only
+- Use the fixed blue-family palette
+- Use message-driven titles
+- Use structured consulting layouts rather than paragraph-heavy pages
+- Do not fall back to 16:9 unless the user explicitly changes the requirement
 
 ## Draft Slides
 
