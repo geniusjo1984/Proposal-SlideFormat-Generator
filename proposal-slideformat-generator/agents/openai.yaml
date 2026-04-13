@@ -1,0 +1,4 @@
+interface:
+  display_name: "Proposal-SlideFormat-Generator"
+  short_description: "Scaffold proposal-slide projects and derive slide plans from RfPs."
+  default_prompt: "Use this skill to initialize an RfP proposal-slide workspace, create DESIGN.md/TASK.md/AGENT.md, and plan a one-slide-per-task deck from the source RfP."
