@@ -43,8 +43,6 @@ The script also creates these files when missing:
 - `TASK.md`
 - `AGENT.md`
 
-Use `-IncludeOverview` to create `개요.md` only when the workspace needs an operating summary.
-
 Use `-Force` to overwrite existing files that were previously scaffolded or intentionally replaced.
 
 ## Build The Control Documents
@@ -55,7 +53,6 @@ Use the reference files selectively instead of loading everything by default.
 - Use `references/design-template.md` when creating or revising `DESIGN.md`.
 - Use `references/task-template.md` when deriving `TASK.md` from a user-provided RfP.
 - Use `references/agent-template.md` when creating the execution and quality-control rules in `AGENT.md`.
-- Use `references/overview-template.md` when the workspace should include a project overview and versioning rules in `개요.md`.
 
 ## Derive TASK.md From The RfP
 

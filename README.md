@@ -43,12 +43,6 @@ Or scaffold directly into a known target path:
 .\proposal-slideformat-generator\scripts\init_project.ps1 -ProjectRoot .\projects\client-a-rfp
 ```
 
-Create `개요.md` only when needed:
-
-```powershell
-.\proposal-slideformat-generator\scripts\init_project.ps1 -ProjectRoot .\projects\client-a-rfp -IncludeOverview
-```
-
 ## Repo Notes
 
 - Do not commit client RfPs or internal reference decks unless you have the right to publish them.

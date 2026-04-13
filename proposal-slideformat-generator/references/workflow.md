@@ -28,7 +28,6 @@ Use this workflow to set up and run a repeatable RfP-based proposal-slide projec
 - `DESIGN.md`: Design authority for layout, color, typography, spacing, and wording style.
 - `TASK.md`: Project-specific source of truth for slide planning.
 - `AGENT.md`: Execution rules for reading order, drafting order, and QC.
-- `개요.md`: Optional operating summary, governance notes, and versioning rules.
 
 ## When To Keep Things Generic
 

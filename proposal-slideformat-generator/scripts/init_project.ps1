@@ -6,8 +6,6 @@ param(
 
     [string]$ProjectName,
 
-    [switch]$IncludeOverview,
-
     [switch]$Force
 )
 
@@ -47,10 +45,6 @@ $files = @(
     @{ Source = "references/task-template.md"; Destination = "TASK.md" },
     @{ Source = "references/agent-template.md"; Destination = "AGENT.md" }
 )
-
-if ($IncludeOverview) {
-    $files += @{ Source = "references/overview-template.md"; Destination = "개요.md" }
-}
 
 if (-not (Test-Path -LiteralPath $resolvedProjectRoot)) {
     New-Item -ItemType Directory -Path $resolvedProjectRoot | Out-Null
