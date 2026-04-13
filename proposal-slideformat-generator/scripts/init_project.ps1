@@ -64,19 +64,22 @@ $placeholders = @(
         Path = "02.Reference_Templete\PUT_TEMPLATE_REFERENCES_HERE.txt"
         Lines = @(
             "Place slide template PDFs, sample decks, or formatting references in this folder.",
-            "When this folder has files, the skill should reconstruct DESIGN.md from those references."
+            "When this folder has files, the skill should reconstruct DESIGN.md from those references.",
+            "If this folder is empty or unusable, the skill must use references/design-template.md and must not search other folders for design references."
         )
     },
     @{
         Path = "03.Reference_Contents_Main\PUT_MAIN_REFERENCES_HERE.txt"
         Lines = @(
-            "Place main proposal references, benchmark materials, policy documents, or core evidence in this folder."
+            "Place main proposal references, benchmark materials, policy documents, or core evidence in this folder.",
+            "This folder supports content only and must not be used as a DESIGN.md fallback source."
         )
     },
     @{
         Path = "04.Reference_Contents_Assistance\PUT_ASSISTANCE_REFERENCES_HERE.txt"
         Lines = @(
-            "Place supporting references, supplemental examples, or secondary evidence in this folder."
+            "Place supporting references, supplemental examples, or secondary evidence in this folder.",
+            "This folder supports content only and must not be used as a DESIGN.md fallback source."
         )
     }
 )

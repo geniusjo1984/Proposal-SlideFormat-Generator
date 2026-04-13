@@ -1,6 +1,6 @@
 # AGENT.md Template
 
-Use this template to create the execution rules for a project-specific workspace after `DESIGN.md` and `TASK.md` are reviewed and confirmed by the user.
+Use this template to create the execution rules for a project-specific workspace after `DESIGN.md` and `TASK.md` are reviewed and confirmed by the user. Use it only when the workspace does not already contain a user-provided `AGENT.md` or the user explicitly asks for regeneration.
 
 ```md
 # AGENT.md

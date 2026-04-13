@@ -1,6 +1,6 @@
 ---
 name: proposal-slideformat-generator
-description: Create consulting-style proposal slide workspaces and slide plans from user-provided RfP/RFP documents. Use when Codex needs to set up a proposal-slide project folder, create or update DESIGN.md, TASK.md, AGENT.md, or derive one-slide-per-task proposal structures from an RfP for Korean public-sector, consulting, or bid-response decks.
+description: Create consulting-style proposal slide workspaces and slide plans from user-provided RfP/RFP documents. Use when Codex needs to set up a proposal-slide project folder, create or update DESIGN.md, TASK.md, reuse or create AGENT.md, or derive one-slide-per-task proposal structures from an RfP for Korean public-sector, consulting, or bid-response decks.
 ---
 
 # Proposal SlideFormat Generator
@@ -15,7 +15,7 @@ Prefer Stitch-based slide generation when it is available in the user's environm
 2. Stop and ask the user to place the RfP and reference materials into the scaffolded folders.
 3. When the user asks for a baseline design, generate `DESIGN.md` and `TASK.md`.
 4. Wait for the user to review and confirm `DESIGN.md` and `TASK.md`.
-5. After confirmation, generate `AGENT.md` if needed and start slide creation.
+5. After confirmation, reuse an existing user-provided `AGENT.md` when it exists. Generate `AGENT.md` only when it is missing or the user explicitly asks for regeneration.
 6. Revise or regenerate slides based on user review.
 
 ## Preferred Execution Path
@@ -69,23 +69,43 @@ If the workspace has been scaffolded but the required inputs are missing:
 Use the reference files selectively instead of loading everything by default.
 
 - Use `references/workflow.md` to understand the end-to-end operating model and folder responsibilities.
-- Use `references/design-template.md` as the default design baseline only after user confirmation when `02.Reference_Templete` has no usable design reference.
+- Use `references/design-template.md` as the mandatory fallback baseline when `02.Reference_Templete` has no usable design reference.
 - Use `references/task-template.md` when deriving `TASK.md` from a user-provided RfP.
-- Use `references/agent-template.md` after the user confirms `DESIGN.md` and `TASK.md`.
+- Use `references/agent-template.md` only when the workspace does not already contain a user-provided `AGENT.md` or the user explicitly asks to regenerate it.
+
+## AGENT.md Reuse Rule
+
+Treat a user-provided `AGENT.md` as authoritative by default.
+
+When the workspace already contains `AGENT.md`:
+
+1. Reuse it as-is when it is already compatible with the current workflow.
+2. Do not regenerate it just because `DESIGN.md` or `TASK.md` changed.
+3. Only update it when the file is missing required placeholders, contradicts the confirmed workflow, or the user explicitly asks for a rewrite.
+4. If a basic baseline file is acceptable to the user, copying or lightly adapting that baseline is preferred over drafting a brand-new `AGENT.md`.
+
+## Design Reference Boundary
+
+When building `DESIGN.md`, the design-source boundary is strict:
+
+1. `02.Reference_Templete` is the only workspace folder that may be inspected for visual, formatting, or layout references.
+2. `03.Reference_Contents_Main` and `04.Reference_Contents_Assistance` may inform slide content, evidence, or wording, but must not be used as design-reference fallback sources.
+3. Do not search sibling folders, parent folders, unrelated project files, or ad hoc local files for substitute design references.
+4. If `02.Reference_Templete` is empty or unusable, immediately use `references/design-template.md`.
 
 ## Generate DESIGN.md
 
 When the user asks for baseline design generation:
 
 1. Confirm that `01.Input_RfP` contains the actual RfP.
-2. Inspect `02.Reference_Templete`.
-3. If `02.Reference_Templete` contains template references, reconstruct `DESIGN.md` from those files while preserving the fixed baseline constraints:
+2. Inspect only `02.Reference_Templete`.
+3. Do not inspect `03.Reference_Contents_Main`, `04.Reference_Contents_Assistance`, sibling folders, parent folders, or unrelated files for design-reference fallback.
+4. If `02.Reference_Templete` contains template references, reconstruct `DESIGN.md` from those files while preserving the fixed baseline constraints:
    - A4 landscape
    - white background
    - consulting-style structure
    - the established blue-family palette unless the references justify a tighter adaptation
-4. If `02.Reference_Templete` is empty or unusable, ask the user whether to use the default baseline from `references/design-template.md`.
-5. Do not assume approval to use the default baseline until the user confirms.
+5. If `02.Reference_Templete` is empty or unusable, use the default baseline from `references/design-template.md` immediately.
 
 ## Derive TASK.md From The RfP
 
@@ -108,7 +128,7 @@ After generating `DESIGN.md` and `TASK.md`:
 
 1. Stop for user review.
 2. Revise those files until the user confirms them.
-3. Only then proceed to `AGENT.md` generation and slide creation.
+3. Only then proceed to `AGENT.md` reuse or generation and slide creation.
 
 ## Fixed Design Baseline
 
@@ -125,7 +145,7 @@ Treat the design baseline from `references/design-template.md` as mandatory by d
 
 Default to this sequence unless the user asks for a different workflow:
 
-1. Generate or update `AGENT.md` from the confirmed `DESIGN.md` and `TASK.md`.
+1. Reuse the existing `AGENT.md` when the user has provided one. Generate or update `AGENT.md` only when it is missing or the user explicitly asks for a new project-specific version.
 2. Check whether Stitch MCP or a Stitch skill is available.
 3. If Stitch is unavailable, recommend installation before proceeding.
 4. Create the overall proposal logic and section map.

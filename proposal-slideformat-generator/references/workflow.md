@@ -18,13 +18,13 @@ Use this workflow to set up and run a repeatable RfP-based proposal-slide projec
 2. Scaffold the project folders.
 3. Ask the user to place the RfP and supporting references into the folders.
 4. When the user requests baseline design, generate `DESIGN.md` and `TASK.md`.
-5. For `DESIGN.md`, inspect `02.Reference_Templete` first.
+5. For `DESIGN.md`, inspect only `02.Reference_Templete`.
 6. If `02.Reference_Templete` has usable references, reconstruct `DESIGN.md` from those references while preserving the fixed A4-landscape baseline.
-7. If `02.Reference_Templete` is empty, ask the user to confirm use of the default baseline from `references/design-template.md`.
+7. If `02.Reference_Templete` is empty or unusable, use the default baseline from `references/design-template.md` immediately.
 8. Stop for user review and confirmation of `DESIGN.md` and `TASK.md`.
 9. After confirmation, check whether Stitch MCP or a Stitch skill is available for slide generation.
 10. If Stitch is not available, recommend Stitch installation first.
-11. Create `AGENT.md` and draft slides in `05.Output_Slide`.
+11. Reuse the existing `AGENT.md` when the user has provided one. Create `AGENT.md` only when it is missing or the user explicitly asks for regeneration, then draft slides in `05.Output_Slide`.
 12. Revise or regenerate slides based on user feedback.
 
 ## Stitch Preference
@@ -36,9 +36,15 @@ Use this workflow to set up and run a repeatable RfP-based proposal-slide projec
 
 ## Document Roles
 
-- `DESIGN.md`: Fixed design authority for A4 landscape layout, color system, typography, spacing, and wording style. Rebuild it from `02.Reference_Templete` when template references exist.
+- `DESIGN.md`: Fixed design authority for A4 landscape layout, color system, typography, spacing, and wording style. Rebuild it from `02.Reference_Templete` when template references exist, and fall back directly to `references/design-template.md` when they do not.
 - `TASK.md`: Project-specific source of truth for slide planning.
-- `AGENT.md`: Execution rules for reading order, drafting order, and QC after `DESIGN.md` and `TASK.md` are confirmed.
+- `AGENT.md`: Execution rules for reading order, drafting order, and QC after `DESIGN.md` and `TASK.md` are confirmed. Reuse a user-provided baseline when available instead of regenerating it by default.
+
+## Design Source Boundary
+
+- Use `02.Reference_Templete` as the only workspace source for layout, formatting, or style references while building `DESIGN.md`.
+- Do not use `03.Reference_Contents_Main`, `04.Reference_Contents_Assistance`, sibling folders, or parent folders as fallback design-reference sources.
+- Treat `03` and `04` as content-support folders, not design-support folders.
 
 ## Input Requirement
 

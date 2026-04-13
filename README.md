@@ -17,8 +17,8 @@ Korean documentation: [README.ko.md](README.ko.md)
 - Stop after scaffolding if the source RfP has not been provided yet
 - Generate `DESIGN.md` and `TASK.md` when the user explicitly requests baseline design
 - Rebuild `DESIGN.md` from `02.Reference_Templete` when template references exist
-- Ask for user confirmation before using the default design baseline when `02.Reference_Templete` is empty
-- Generate `AGENT.md` after `DESIGN.md` and `TASK.md` are confirmed
+- Use the default design baseline from `references/design-template.md` immediately when `02.Reference_Templete` is empty or unusable
+- Reuse a user-provided `AGENT.md` after `DESIGN.md` and `TASK.md` are confirmed, and generate `AGENT.md` only when it is missing or explicitly requested
 - Prefer Stitch MCP or a Stitch skill for slide generation
 - Recommend Stitch installation first when Stitch is unavailable
 - Treat `TASK.md` as a project-specific output derived from the user's RfP
@@ -48,6 +48,10 @@ This creates folders only. Then place the source RfP in `01.Input_RfP`.
 Then place slide-format references in `02.Reference_Templete` and supporting references in `03` and `04`.
 
 After that, ask Codex to generate baseline `DESIGN.md` and `TASK.md`.
+
+For `DESIGN.md`, Codex should inspect only `02.Reference_Templete` for visual references. If that folder is empty or unusable, Codex should immediately use `references/design-template.md` instead of searching other folders.
+
+For `AGENT.md`, Codex should reuse an existing user-provided baseline when one is already available instead of regenerating it by default.
 
 When slide generation starts, Codex should prefer Stitch. If Stitch is not available, Codex should recommend installing it before falling back to the standard workflow.
 
