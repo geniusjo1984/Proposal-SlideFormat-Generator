@@ -15,7 +15,10 @@ Korean documentation: [README.ko.md](README.ko.md)
 
 - Create a standard proposal project folder structure
 - Stop after scaffolding if the source RfP has not been provided yet
-- Generate `DESIGN.md`, `TASK.md`, and `AGENT.md` only after the RfP exists
+- Generate `DESIGN.md` and `TASK.md` when the user explicitly requests baseline design
+- Rebuild `DESIGN.md` from `02.Reference_Templete` when template references exist
+- Ask for user confirmation before using the default design baseline when `02.Reference_Templete` is empty
+- Generate `AGENT.md` after `DESIGN.md` and `TASK.md` are confirmed
 - Treat `TASK.md` as a project-specific output derived from the user's RfP
 - Support consulting-style and Korean public-sector proposal slide planning
 - Enforce A4 landscape as the fixed default slide ratio
@@ -40,12 +43,9 @@ Initialize a new project root folder and standard subfolders:
 ```
 
 This creates folders only. Then place the source RfP in `01.Input_RfP`.
+Then place slide-format references in `02.Reference_Templete` and supporting references in `03` and `04`.
 
-After the RfP is present, create the control documents:
-
-```powershell
-.\proposal-slideformat-generator\scripts\init_project.ps1 -ProjectRoot .\projects\client-a-rfp -CreateControlDocs
-```
+After that, ask Codex to generate baseline `DESIGN.md` and `TASK.md`.
 
 ## Repo Notes
 

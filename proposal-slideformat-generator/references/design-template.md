@@ -1,6 +1,6 @@
 # DESIGN.md Template
 
-Use this template as the fixed design authority for proposal-slide workspaces. Treat the visual rules below as the default standard, not as optional suggestions.
+Use this template as the default design baseline when `02.Reference_Templete` has no usable design reference and the user confirms fallback to the standard baseline. Treat the visual rules below as the default standard, not as optional suggestions.
 
 ```md
 # DESIGN.md

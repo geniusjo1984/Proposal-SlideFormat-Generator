@@ -1,10 +1,11 @@
 # TASK.md Template
 
-Use this template to derive a project-specific `TASK.md` from the user's RfP.
+Use this template to derive a project-specific `TASK.md` from the user's RfP after the user requests baseline design generation.
 
 ## Required Principles
 
 - Build `TASK.md` only after confirming that the actual RfP is present in `01.Input_RfP`.
+- Build `TASK.md` together with `DESIGN.md` during the user's baseline-design request.
 - Preserve the source section hierarchy unless the user requests a different structure.
 - Preserve task-level bullets that the slide set must reflect.
 - Keep all titles and lead messages traceable to the source.

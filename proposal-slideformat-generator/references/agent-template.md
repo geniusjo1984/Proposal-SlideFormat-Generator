@@ -1,6 +1,6 @@
 # AGENT.md Template
 
-Use this template to create the execution rules for a project-specific workspace.
+Use this template to create the execution rules for a project-specific workspace after `DESIGN.md` and `TASK.md` are reviewed and confirmed by the user.
 
 ```md
 # AGENT.md
@@ -18,6 +18,8 @@ If the folder is empty:
 1. Stop.
 2. Ask the user to place the RfP in `01.Input_RfP`.
 3. Do not create `TASK.md` or draft slides yet.
+
+Before using this template, confirm that the user has already reviewed and confirmed `DESIGN.md` and `TASK.md`.
 
 Always follow this order before generating or revising slides:
 
@@ -37,8 +39,8 @@ Always follow this order before generating or revising slides:
 ## Core Assignment
 
 - Build a proposal-style slide deck covering the RfP task structure
-- Use `DESIGN.md` to control visual language and formatting
-- Use `TASK.md` to control content structure and slide mapping
+- Use the confirmed `DESIGN.md` to control visual language and formatting
+- Use the confirmed `TASK.md` to control content structure and slide mapping
 - Enforce A4 landscape composition as a fixed default
 - Default to one main slide per task unless the user instructs otherwise
 

@@ -5,15 +5,16 @@ description: Create consulting-style proposal slide workspaces and slide plans f
 
 # Proposal SlideFormat Generator
 
-Use this skill to turn an RfP into a reusable slide-production workspace and a proposal-ready task structure.
+Use this skill to turn an RfP into a reusable slide-production workspace, a confirmed design/task baseline, and a proposal-ready slide set.
 
 ## Quick Start
 
 1. Initialize the workspace folders when the project structure does not exist.
-2. Stop and ask the user to place the source RfP in `01.Input_RfP` if that folder has no source file.
-3. Create or update `DESIGN.md`, `TASK.md`, and `AGENT.md` only after the RfP is present.
-4. Plan slides from `TASK.md`, usually with one main slide per task unless the user requests another mapping.
-5. Verify that every claim is traceable to the RfP or an explicit user instruction.
+2. Stop and ask the user to place the RfP and reference materials into the scaffolded folders.
+3. When the user asks for a baseline design, generate `DESIGN.md` and `TASK.md`.
+4. Wait for the user to review and confirm `DESIGN.md` and `TASK.md`.
+5. After confirmation, generate `AGENT.md` if needed and start slide creation.
+6. Revise or regenerate slides based on user review.
 
 ## Initialize The Workspace
 
@@ -29,7 +30,7 @@ Or point directly at the full project path:
 ./scripts/init_project.ps1 -ProjectRoot <target-folder>
 ```
 
-By default the script creates folders only and writes an input reminder file in `01.Input_RfP`.
+The script creates folders only and writes reminder files that tell the user where to place the RfP and references.
 
 The script creates these folders:
 
@@ -39,32 +40,41 @@ The script creates these folders:
 - `04.Reference_Contents_Assistance`
 - `05.Output_Slide`
 
-After the user places the source RfP in `01.Input_RfP`, rerun the script with `-CreateControlDocs` to write:
-
-- `DESIGN.md`
-- `TASK.md`
-- `AGENT.md`
-
-Use `-Force` to overwrite existing files that were previously scaffolded or intentionally replaced.
+Use `-Force` to overwrite existing reminder files that were previously scaffolded.
 
 ## Input Gate
 
-Do not create `TASK.md`, do not draft slides, and do not infer project-specific content until an actual RfP file exists in `01.Input_RfP`.
+Do not create `DESIGN.md`, do not create `TASK.md`, and do not draft slides until the user has placed the actual RfP and relevant references into the workspace.
 
-If the workspace has been scaffolded but the input folder is empty:
+If the workspace has been scaffolded but the required inputs are missing:
 
 1. Stop after folder setup.
 2. Tell the user to place the RfP in `01.Input_RfP`.
-3. Resume only after the source file is present.
+3. Tell the user to place slide-format references in `02.Reference_Templete` when available.
+4. Resume only after the source files are present.
 
 ## Build The Control Documents
 
 Use the reference files selectively instead of loading everything by default.
 
 - Use `references/workflow.md` to understand the end-to-end operating model and folder responsibilities.
-- Use `references/design-template.md` as the fixed design authority. Keep A4 landscape and the baseline visual system unless the user explicitly overrides them.
+- Use `references/design-template.md` as the default design baseline only after user confirmation when `02.Reference_Templete` has no usable design reference.
 - Use `references/task-template.md` when deriving `TASK.md` from a user-provided RfP.
-- Use `references/agent-template.md` when creating the execution and quality-control rules in `AGENT.md`.
+- Use `references/agent-template.md` after the user confirms `DESIGN.md` and `TASK.md`.
+
+## Generate DESIGN.md
+
+When the user asks for baseline design generation:
+
+1. Confirm that `01.Input_RfP` contains the actual RfP.
+2. Inspect `02.Reference_Templete`.
+3. If `02.Reference_Templete` contains template references, reconstruct `DESIGN.md` from those files while preserving the fixed baseline constraints:
+   - A4 landscape
+   - white background
+   - consulting-style structure
+   - the established blue-family palette unless the references justify a tighter adaptation
+4. If `02.Reference_Templete` is empty or unusable, ask the user whether to use the default baseline from `references/design-template.md`.
+5. Do not assume approval to use the default baseline until the user confirms.
 
 ## Derive TASK.md From The RfP
 
@@ -81,6 +91,14 @@ When building `TASK.md`:
 
 If the RfP is ambiguous, keep the structure generic rather than inventing unsupported detail.
 
+## Review Gate
+
+After generating `DESIGN.md` and `TASK.md`:
+
+1. Stop for user review.
+2. Revise those files until the user confirms them.
+3. Only then proceed to `AGENT.md` generation and slide creation.
+
 ## Fixed Design Baseline
 
 Treat the design baseline from `references/design-template.md` as mandatory by default:
@@ -96,11 +114,12 @@ Treat the design baseline from `references/design-template.md` as mandatory by d
 
 Default to this sequence unless the user asks for a different workflow:
 
-1. Create the overall proposal logic and section map.
-2. Draft one main slide per task.
-3. Carry all required sub-bullets from the RfP into the slide body.
-4. Refine wording into concise, proposal-style statements.
-5. Check layout density and export safety for PowerPoint or PDF.
+1. Generate or update `AGENT.md` from the confirmed `DESIGN.md` and `TASK.md`.
+2. Create the overall proposal logic and section map.
+3. Draft one main slide per task.
+4. Carry all required sub-bullets from the RfP into the slide body.
+5. Refine wording into concise, proposal-style statements.
+6. Check layout density and export safety for PowerPoint or PDF.
 
 ## Quality Control
 

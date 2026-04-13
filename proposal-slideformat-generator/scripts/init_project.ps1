@@ -6,8 +6,6 @@ param(
 
     [string]$ProjectName,
 
-    [switch]$CreateControlDocs,
-
     [switch]$Force
 )
 
@@ -42,12 +40,6 @@ $folders = @(
     "05.Output_Slide"
 )
 
-$files = @(
-    @{ Source = "references/design-template.md"; Destination = "DESIGN.md" },
-    @{ Source = "references/task-template.md"; Destination = "TASK.md" },
-    @{ Source = "references/agent-template.md"; Destination = "AGENT.md" }
-)
-
 if (-not (Test-Path -LiteralPath $resolvedProjectRoot)) {
     New-Item -ItemType Directory -Path $resolvedProjectRoot | Out-Null
 }
@@ -60,38 +52,42 @@ foreach ($folder in $folders) {
     }
 }
 
-$rfpPlaceholderPath = Join-Path $resolvedProjectRoot "01.Input_RfP\PUT_RFP_HERE.txt"
-if ((-not (Test-Path -LiteralPath $rfpPlaceholderPath)) -or $Force) {
-    @(
-        "Place the source RfP or RFP document in this folder before creating TASK.md or drafting slides.",
-        "The skill should stop and ask for the RfP if this folder has no source file."
-    ) | Set-Content -LiteralPath $rfpPlaceholderPath -Encoding UTF8
-    Write-Host "[write]  $rfpPlaceholderPath"
-}
-
-if (-not $CreateControlDocs) {
-    Write-Host "[done]   Folder scaffold created."
-    Write-Host "[next]   Put the source RfP into 01.Input_RfP, then rerun with -CreateControlDocs."
-    return
-}
-
-$rfpFiles = Get-ChildItem -LiteralPath (Join-Path $resolvedProjectRoot "01.Input_RfP") -File |
-    Where-Object { $_.Name -ne "PUT_RFP_HERE.txt" }
-
-if ($rfpFiles.Count -eq 0) {
-    throw "No source RfP found in 01.Input_RfP. Put the RfP file in that folder before using -CreateControlDocs."
-}
-
-foreach ($file in $files) {
-    $sourcePath = Join-Path $skillRoot $file.Source
-    $targetPath = Join-Path $resolvedProjectRoot $file.Destination
-
-    if ((Test-Path -LiteralPath $targetPath) -and -not $Force) {
-        Write-Host "[skip]   $targetPath"
-        continue
+$placeholders = @(
+    @{
+        Path = "01.Input_RfP\PUT_RFP_HERE.txt"
+        Lines = @(
+            "Place the source RfP or RFP document in this folder before requesting DESIGN.md, TASK.md, or slides.",
+            "The skill should stop and ask for the RfP if this folder has no source file."
+        )
+    },
+    @{
+        Path = "02.Reference_Templete\PUT_TEMPLATE_REFERENCES_HERE.txt"
+        Lines = @(
+            "Place slide template PDFs, sample decks, or formatting references in this folder.",
+            "When this folder has files, the skill should reconstruct DESIGN.md from those references."
+        )
+    },
+    @{
+        Path = "03.Reference_Contents_Main\PUT_MAIN_REFERENCES_HERE.txt"
+        Lines = @(
+            "Place main proposal references, benchmark materials, policy documents, or core evidence in this folder."
+        )
+    },
+    @{
+        Path = "04.Reference_Contents_Assistance\PUT_ASSISTANCE_REFERENCES_HERE.txt"
+        Lines = @(
+            "Place supporting references, supplemental examples, or secondary evidence in this folder."
+        )
     }
+)
 
-    $content = Get-Content -LiteralPath $sourcePath -Raw
-    Set-Content -LiteralPath $targetPath -Value $content -Encoding UTF8
-    Write-Host "[write]  $targetPath"
+foreach ($placeholder in $placeholders) {
+    $placeholderPath = Join-Path $resolvedProjectRoot $placeholder.Path
+    if ((-not (Test-Path -LiteralPath $placeholderPath)) -or $Force) {
+        $placeholder.Lines | Set-Content -LiteralPath $placeholderPath -Encoding UTF8
+        Write-Host "[write]  $placeholderPath"
+    }
 }
+
+Write-Host "[done]   Folder scaffold created."
+Write-Host "[next]   Put the RfP and references into the folders, then request baseline design generation."
