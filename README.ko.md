@@ -3,6 +3,8 @@
 사용자가 제공한 RfP/RFP 문서를 바탕으로 제안서 장표용 작업 폴더, 제어 문서, 과업별 장표 계획을 만드는 Codex skill 저장소입니다.
 
 영문 문서: [README.md](README.md)
+변경 이력: [CHANGELOG.md](CHANGELOG.md)
+최신 릴리스: [v0.1.0](https://github.com/geniusjo1984/Proposal-SlideFormat-Generator/releases/tag/v0.1.0)
 
 ## 구성
 

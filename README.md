@@ -3,6 +3,8 @@
 Reusable Codex skill for turning user-provided RfP/RFP documents into proposal-slide workspaces, control documents, and one-slide-per-task planning structures.
 
 Korean documentation: [README.ko.md](README.ko.md)
+Changelog: [CHANGELOG.md](CHANGELOG.md)
+Latest release: [v0.1.0](https://github.com/geniusjo1984/Proposal-SlideFormat-Generator/releases/tag/v0.1.0)
 
 ## What This Repo Contains
 
