@@ -25,7 +25,7 @@ Use this execution priority for slide creation:
 1. If Stitch MCP is available, use it as the preferred slide-generation path.
 2. Otherwise, if a Stitch skill is available, use that workflow.
 3. If Stitch is not available, first recommend that the user install Stitch.
-4. If Stitch is still unavailable or the user declines, continue with the standard workflow using confirmed `DESIGN.md` and `TASK.md`.
+4. If Stitch is still unavailable or the user declines, continue with the standard workflow using confirmed `DESIGN.md` and `TASK.md`, with `html` as the required fallback output.
 
 ## Initialize The Workspace
 
@@ -149,10 +149,34 @@ Default to this sequence unless the user asks for a different workflow:
 2. Check whether Stitch MCP or a Stitch skill is available.
 3. If Stitch is unavailable, recommend installation before proceeding.
 4. Create the overall proposal logic and section map.
-5. Draft one main slide per task.
+5. Draft one main slide per task as an actual slide artifact in `05.Output_Slide`.
 6. Carry all required sub-bullets from the RfP into the slide body.
 7. Refine wording into concise, proposal-style statements.
 8. Check layout density and export safety for PowerPoint or PDF.
+
+## Output Format Rule
+
+When the user asks to create slides, the default output must be an actual slide artifact, not a Markdown stand-in.
+
+- Prefer Stitch outputs when available
+- Use `05.Output_Slide` for working slide artifacts and final outputs
+- When Stitch is unavailable in the standard workflow, generate `.html` slide artifacts only
+- Do not create `.md` files as substitutes for slides unless the user explicitly asks for a slide brief, slide script, or Markdown planning document
+- `DESIGN.md`, `TASK.md`, and `AGENT.md` remain control documents only; they are not slide deliverables
+
+## Standard Fallback Generator
+
+When Stitch is unavailable and the user still wants a sample slide quickly, use the bundled script:
+
+```powershell
+python .\proposal-slideformat-generator\scripts\generate_calibration_slide.py --output-dir .\05.Output_Slide --format html
+```
+
+Behavior:
+
+- writes a `.html` slide artifact in `05.Output_Slide`
+- follows the fixed-zone contract from `DESIGN.md`
+- should not emit Markdown stand-ins
 
 ## Quality Control
 

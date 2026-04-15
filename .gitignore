@@ -8,3 +8,6 @@ tmp-*
 
 # Generated sample workspaces
 projects/
+
+# Local example references and generated slide samples
+example/

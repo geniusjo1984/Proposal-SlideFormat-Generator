@@ -1,4 +1,4 @@
 interface:
   display_name: "Proposal-SlideFormat-Generator"
   short_description: "Scaffold proposal-slide projects, derive slide plans from RfPs, reuse AGENT.md when provided, and keep DESIGN.md fallback strict."
-  default_prompt: "Use this skill to initialize an RfP proposal-slide workspace, create DESIGN.md and TASK.md, reuse an existing AGENT.md when the user has provided one, create AGENT.md only when it is missing or explicitly requested, and use only 02.Reference_Templete for design references before falling back directly to references/design-template.md."
+  default_prompt: "Use this skill to initialize an RfP proposal-slide workspace, create DESIGN.md and TASK.md, reuse an existing AGENT.md when the user has provided one, create AGENT.md only when it is missing or explicitly requested, use only 02.Reference_Templete for design references before falling back directly to references/design-template.md, and when Stitch is unavailable generate actual HTML slide artifacts instead of Markdown stand-ins. Preserve the fixed title, lead, body, divider, and footer zones defined by DESIGN.md, and keep the footer/page zone for the page number only."

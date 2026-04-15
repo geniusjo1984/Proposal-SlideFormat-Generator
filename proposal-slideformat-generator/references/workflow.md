@@ -24,8 +24,9 @@ Use this workflow to set up and run a repeatable RfP-based proposal-slide projec
 8. Stop for user review and confirmation of `DESIGN.md` and `TASK.md`.
 9. After confirmation, check whether Stitch MCP or a Stitch skill is available for slide generation.
 10. If Stitch is not available, recommend Stitch installation first.
-11. Reuse the existing `AGENT.md` when the user has provided one. Create `AGENT.md` only when it is missing or the user explicitly asks for regeneration, then draft slides in `05.Output_Slide`.
-12. Revise or regenerate slides based on user feedback.
+11. If Stitch remains unavailable, generate `.html` output in `05.Output_Slide`.
+12. Reuse the existing `AGENT.md` when the user has provided one. Create `AGENT.md` only when it is missing or the user explicitly asks for regeneration, then draft actual slide outputs in `05.Output_Slide`.
+13. Revise or regenerate slides based on user feedback.
 
 ## Stitch Preference
 
@@ -33,6 +34,7 @@ Use this workflow to set up and run a repeatable RfP-based proposal-slide projec
 - Otherwise prefer a Stitch skill workflow.
 - If neither is available, recommend installing Stitch before continuing.
 - If the user chooses not to install Stitch, continue with the standard workflow using the confirmed workspace documents.
+- In the standard workflow, use `.html` as the fallback slide output.
 
 ## Document Roles
 
@@ -40,6 +42,12 @@ Use this workflow to set up and run a repeatable RfP-based proposal-slide projec
 - `TASK.md`: Project-specific source of truth for slide planning.
 - `AGENT.md`: Execution rules for reading order, drafting order, and QC after `DESIGN.md` and `TASK.md` are confirmed. Reuse a user-provided baseline when available instead of regenerating it by default.
 
+## Slide Output Rule
+
+- When the user asks for slides, produce actual slide artifacts in `05.Output_Slide`.
+- In the non-Stitch path, produce `.html` slide artifacts.
+- Do not substitute Markdown files for slides unless the user explicitly requests a planning document, prompt sheet, or script.
+- Treat Markdown files in the workspace as control documents only, not as default slide outputs.
 ## Design Source Boundary
 
 - Use `02.Reference_Templete` as the only workspace source for layout, formatting, or style references while building `DESIGN.md`.

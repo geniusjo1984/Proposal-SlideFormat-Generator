@@ -21,6 +21,7 @@ Korean documentation: [README.ko.md](README.ko.md)
 - Reuse a user-provided `AGENT.md` after `DESIGN.md` and `TASK.md` are confirmed, and generate `AGENT.md` only when it is missing or explicitly requested
 - Prefer Stitch MCP or a Stitch skill for slide generation
 - Recommend Stitch installation first when Stitch is unavailable
+- In the non-Stitch fallback path, generate `html` slide artifacts
 - Treat `TASK.md` as a project-specific output derived from the user's RfP
 - Support consulting-style and Korean public-sector proposal slide planning
 - Enforce A4 landscape as the fixed default slide ratio
@@ -53,7 +54,13 @@ For `DESIGN.md`, Codex should inspect only `02.Reference_Templete` for visual re
 
 For `AGENT.md`, Codex should reuse an existing user-provided baseline when one is already available instead of regenerating it by default.
 
-When slide generation starts, Codex should prefer Stitch. If Stitch is not available, Codex should recommend installing it before falling back to the standard workflow.
+When slide generation starts, Codex should prefer Stitch. If Stitch is not available, Codex should recommend installing it before falling back to the standard workflow. In that fallback path, generate `html` slide artifacts that follow the fixed A4 layout contract in `DESIGN.md`.
+
+Example sample-slide generation:
+
+```powershell
+python .\proposal-slideformat-generator\scripts\generate_calibration_slide.py --output-dir .\05.Output_Slide --format html
+```
 
 ## Repo Notes
 
